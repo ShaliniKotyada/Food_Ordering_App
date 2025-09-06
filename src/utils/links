@@ -1,0 +1,18 @@
+const IMG_URL="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_400/";
+
+const URL="https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0035068&lng=77.5890953";
+
+const CATEGORY_URL="https://media-assets.swiggy.com/swiggy/image/upload/";
+
+function getCategoryUrl(collectionId, tag) {
+  return `${URL}&collection=${collectionId}&tags=${tag}&sortBy=&filters=&type=rcv2&offset=0&page_type=null`;
+}    
+
+const BASE_MENU_URL = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0035068&lng=77.5890953&catalog_qa=undefined&submitAction=ENTER";
+
+function getMenuUrl(restaurantId, query) {
+  return `${BASE_MENU_URL}&restaurantId=${restaurantId}&query=${query}`;
+}
+export {IMG_URL,URL, CATEGORY_URL, getCategoryUrl,getMenuUrl, BASE_MENU_URL};
+
+// "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0035068&lng=77.5890953&collection=83639&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&page_type=null"

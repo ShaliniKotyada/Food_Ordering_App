@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Header from "./Header";
+import Restaurants from "./Restaurants";
+import Categories from "./Categories";
+import RestaurantInfo from "./RestaurantInfo";
 
+import {
+  Outlet,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+// This is your App component
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      <Outlet />
     </>
-  )
+  );
 }
 
-export default App
+// Define routes
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Categories />,
+      },
+      {
+        path: "/restaurants/:id",
+        element: <Restaurants />,
+      },
+      {
+        path: "/restaurants/:id/:query",
+        element: <RestaurantInfo />,
+      },
+    ],
+  },
+]);
+
+// Export RouterProvider instead of App
+export default App;
+export { appRouter };
+
